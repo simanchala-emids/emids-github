@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>EmidsGithub</title>
+  <%= csrf_meta_tags %>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+<header class="navbar navbar-static-top" id="top">
+  <div class="container">
+    <div class="navbar-header float-left">
+      <a class="navbar-brand" href="/">EmidsGithub</a>
+    </div>
+    <nav class="navbar-collapse" id="bs-navbar">
+      <ul class="nav navbar-nav float-left">
+        <% if current_user %>
+        <li><%= link_to "Repository", repositories_path %></li>
+        <% end %>
+      </ul>
+      <ul class="nav navbar-nav navbar-right float-right">
+
+          <% if current_user %>
+              <li><span class="welcome">Logeed in as! <%= current_user.nick_name %></span></li>
+            <li><%= link_to "Sign Out", signout_path %></li>
+          <% else %>
+              <li><%= link_to "Sign in with Github", "/auth/github" %></li>
+          <% end %>
+      </ul>
+    </nav>
+  </div>
+</header>
+<div class="container">
+  <%= yield %>
+</div>
+</body>
+</html>

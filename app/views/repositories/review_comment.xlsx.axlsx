@@ -1,0 +1,7 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "ReviewComment") do |sheet|
+    sheet.add_row ["PullRequest", "Title","Description","Comment", "Developer", "Reviewer", "FileName"]
+    @review_comments.each do |review|
+        sheet.add_row review
+    end
+end

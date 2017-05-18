@@ -1,0 +1,24 @@
+<h1>Repositories#list</h1>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Full Name</th>
+    <th>Owner</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <% @respositories.each do |repository| %>
+      <tr>
+        <td><%= repository["id"] %></td>
+        <td><%= repository["name"] %></td>
+        <td><%= repository["full_name"] %></td>
+        <td><%= repository["owner"]["login"] %></td>
+        <td><%= link_to 'Pull Request',repository_path(id: repository["name"], owner: repository["owner"]["login"]),class: 'btn btn-success' %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

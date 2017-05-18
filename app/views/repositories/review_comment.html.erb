@@ -1,0 +1,24 @@
+<h1>Review And Comment#list</h1>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>PullRequest</th>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Comment</th>
+    <th>Developer</th>
+    <th>Reviewer</th>
+    <th>FileName</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <% @review_comments.each do |reviews| %>
+      <tr>
+        <% reviews.each do |review| %>
+            <td><%= review %></td>
+        <% end %>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

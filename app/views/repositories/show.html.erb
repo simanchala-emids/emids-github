@@ -1,0 +1,18 @@
+<h1><%= params["id"] %> Repository</h1>
+<hr/>
+<!--<div class="info"></div>-->
+<h2>Fetch Pull Request Info</h2>
+<hr/>
+<%= form_tag(review_comment_repositories_path(format: "xlsx"), method: "post", class: "form-inline") do %>
+    <div class="form-group">
+      <label for="from-no">From</label>
+      <%= text_field_tag(:from, "", class: "form-control", placeholder: "10") %>
+    </div>
+    <div class="form-group">
+      <label for="to-no">To</label>
+      <%= text_field_tag(:to, "", class: "form-control", placeholder: "30") %>
+    </div>
+    <%= hidden_field_tag(:repo, params["id"]) %>
+    <%= hidden_field_tag(:owner, params["owner"]) %>
+    <button type="submit" class="btn btn-success">Review Comment</button>
+<% end %>
