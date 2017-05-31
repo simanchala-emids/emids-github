@@ -14,6 +14,7 @@ class User < ApplicationRecord
       from.upto(to) do |pull|
         url = "#{Settings.github_url}repos/#{data['owner']}/#{data["repo"]}/pulls/#{pull}?access_token=#{self.access_token}"
         response = Typhoeus.get(url)
+        break if response.response_code != 200
         pull_request_obj = parse_json_data response
         if pull_request_obj["review_comments"] > 0
           url = "#{pull_request_obj["review_comments_url"]}?access_token=#{self.access_token}"
@@ -36,7 +37,6 @@ class User < ApplicationRecord
     begin
       ActiveSupport::JSON.decode(response.response_body)
     rescue ActiveSupport::JSON.parse_error
-      binding.pry
       Rails.logger.warn("Attempted to decode invalid JSON")
     end
   end
